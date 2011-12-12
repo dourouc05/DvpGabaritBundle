@@ -1,0 +1,5 @@
+services:
+    twig.extension.dvp_gabarit:
+        class: Dvp\GabaritBundle\Twig\Extension\DvpGabaritExtension
+        tags:
+            - { name: twig.extension }
