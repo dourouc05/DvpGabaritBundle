@@ -9,7 +9,8 @@ template within Twig. As such, it is very easy to configure: add it to your AppK
             new Dvp\GabaritBundle\DvpGabaritBundle(),
         );
 
-Then to your autoloader::
+Then to your autoloader:
+::
         $loader->registerNamespaces(array(
             'Symfony'          => array(__DIR__.'/../vendor/symfony/src', __DIR__.'/../vendor/bundles'),
             // ...
