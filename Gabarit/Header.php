@@ -16,7 +16,6 @@ class Header {
         $this->params['meta_description'] = ''; 
         $this->params['meta_keywords'] = ''; 
         $this->params['jquery'] = true; 
-        $this->params['jquery_version'] = false;
         $this->params['js'] = array(); 
         $this->params['css'] = array(); 
         $this->params['section'] = $section; 
@@ -29,7 +28,7 @@ class Header {
         $this->params['meta_description'] = ''; 
         $this->params['meta_keywords'] = ''; 
         $this->params['jquery'] = true; 
-        $this->params['jquery_version'] = false; // or string for the exact version asked (if available; only 1.4.4 and 1.7.2 at the time of writing)
+        $this->params['jquery_version'] = null; // true (latest) or string for the exact version asked (if available; only 1.4.4 and 1.7.2 at the time of writing)
         $this->params['js'] = array(); 
         $this->params['css'] = array(); 
         $this->params['raw_js'] = null; 
@@ -72,21 +71,23 @@ class Header {
             }
             
             switch($this->params['output']) { // Only effect on the base script: change DOCTYPE (none for HTML4, standard for HTML5, XHTML 1.0 Transitional for XHTML). 
-            'html': 
+            case 'html': 
                 $xhtml = false; 
                 break; 
-            'html5': 
+            case 'html5': 
                 $xhtml5 = true; 
                 break; 
-            'xhtml': 
+            case 'xhtml': 
                 $xhtml = true; 
                 break; 
             }
             
-            if($this->params['jquery']) {
-                if(isset($this->params['jquery_version'])) {
+            if($this->params['jquery'] && isset($this->params['jquery_version'])) {
+                if($this->params['jquery_version'] === true) {
+                    $gabarit_jquery = true; 
+                } else {
                     $gabarit_jquery = $this->params['jquery_version']; 
-                } elseif 
+                }
             } else {
                 $gabarit_jquery = false; 
             }
@@ -121,7 +122,7 @@ class Header {
     // Parameters. 
     
     public function setEncoding($e) {
-        if(! in_array($e, $this->validEncodings) {
+        if(! in_array($e, $this->validEncodings)) {
             throw new \InvalidArgumentException('The encoding ' . $e . ' is not (yet?) supported (' . implode($this->validEncodings, ', ') . ').'); 
         }
         
