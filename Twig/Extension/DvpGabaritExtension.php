@@ -42,9 +42,22 @@ class DvpGabaritExtension extends \Twig_Extension
         return utf8_encode(file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/template/caches/tetexhtml' . $id . '.cache'));
     }
     
-    public function gabDown($id)
+    public function gabDown($rubrique, $useFullInclude = false, $Licence = null)
+    // Note: "$rubrique" is to be compatible with the include'd template. Would have been "$id". 
+    // Note: "$Licence" chosen for the same reason. Would have been "$licence". 
     {
-        return utf8_encode(file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/template/caches/piedxhtml' . $id . '.cache'));
+        // Variable name chosen for compatibility with include'd template. Would have been "$file". 
+        $fichierCachePied = $_SERVER['DOCUMENT_ROOT'] . '/template/caches/piedxhtml' . $rubrique . '.cache'; 
+        
+        if(! $useFullInclude) {
+            return utf8_encode(file_get_contents($fichierCachePied));
+        } else {
+            ob_start(); 
+            $gabarit_utf8 = false; // Otherwise, as the include'd thing does itself some output buffering in case 
+                                   // of UTF-8 output, it's a waste of time. 
+            include $_SERVER['DOCUMENT_ROOT'] . '/template/pied.php'; 
+            return utf8_encode(ob_get_clean()); 
+        }
     }
     
     public function gabLicense()
