@@ -17,7 +17,7 @@ Then to your autoloader::
         ));
 
 And you're done (if the bundle is installed in /vendor/bundles/Dvp/GabaritBundle). 
-If you want to use the deps method: 
+If you want to use the deps method:: 
         [DvpGabaritBundle]
             git=http://github.com/dourouc05/DvpGabaritBundle.git
             target=/bundles/Dvp/GabaritBundle
