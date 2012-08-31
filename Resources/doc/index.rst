@@ -1,4 +1,6 @@
-h1. DvpGabaritBundle
+================
+DvpGabaritBundle
+================
 
 A very simple bundle whose only goal is to provide direct access to Developpez.com 
 template within Twig. As such, it is very easy to configure: add it to your AppKernel.php. 
