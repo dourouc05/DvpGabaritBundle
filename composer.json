@@ -1,0 +1,27 @@
+{
+    "name": "dvp/gabarit-bundle",
+    "type": "symfony-bundle",
+    "description": "Developpez.com Gabarit Bundle (Twig extensions)",
+    "homepage": "https://github.com/dourouc05/DvpGabaritBundle",
+    "license": "none",
+    "authors": [
+        {
+            "name": "Thomas Rabaix",
+            "email": "thomas.rabaix@sonata-project.org",
+            "homepage": "http://sonata-project.org"
+        },
+        {
+            "name": "Sonata Community",
+            "homepage": "https://github.com/sonata-project/SonataNewsBundle/contributors"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2",
+        "symfony/symfony": ">=2.0.0",
+        "twig/twig": ">=1.4.0"
+    },
+    "autoload": {
+        "psr-0": { "Dvp\\GabaritBundle": "" }
+    },
+    "target-dir": "Dvp/GabaritBundle"
+}
