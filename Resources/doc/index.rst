@@ -28,3 +28,13 @@ If you want to use the deps method::
         [DvpGabaritBundle]
             git=http://github.com/dourouc05/DvpGabaritBundle.git
             target=/bundles/Dvp/GabaritBundle
+
+---
+Use
+---
+
+To include just the body part of the template, use the Twig filters (with the section number):  
+::
+        {{ 65|gab_up }}
+        {# content #}
+        {{ 65|gab_down }}
