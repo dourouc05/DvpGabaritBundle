@@ -48,12 +48,12 @@ class Header {
     
     public function toHtml5() {
         $this->params['output'] = 'html5'; 
-        return $this->stubOutput(); 
+        return $this->html5Cleanup($this->stubOutput()); 
     }
     
     public function toHtml4() {
         $this->params['output'] = 'html'; 
-        return $this->html5Cleanup($this->stubOutput()); 
+        return $this->stubOutput(); 
     }
     
     private function stubOutput() {
@@ -115,7 +115,7 @@ class Header {
     }
     
     private function html5Cleanup($string) {
-        $string = preg_replace('/<meta name="MSN_(.*)\/>/', '', $string); 
+        $string = preg_replace('/<meta name="MS(.*)>/', '', $string); // MS.LOCALE and MSN_*, incompatible with HTML5
         return $string; 
     }
     
