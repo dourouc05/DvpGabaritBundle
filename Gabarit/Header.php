@@ -11,7 +11,7 @@ class Header {
     
     // Default values. 
     
-    public function __construct() {
+    public function __construct($title = '', $section = 1) {
         $this->params['encoding'] = 'utf-8'; 
         $this->params['meta_description'] = ''; 
         $this->params['meta_keywords'] = ''; 
@@ -19,7 +19,8 @@ class Header {
         $this->params['jquery_version'] = false;
         $this->params['js'] = array(); 
         $this->params['css'] = array(); 
-        $this->params['section'] = 1; 
+        $this->params['section'] = $section; 
+        $this->params['title'] = $title; 
     }
     
     private function toDefault() { // "Documentation" function. 
@@ -34,6 +35,7 @@ class Header {
         $this->params['raw_js'] = null; 
         $this->params['section'] = 1; 
         $this->params['head'] = null; 
+        $this->params['title'] = ''; 
         
         $this->params['output'] = 'xhtml'; // or 'html5' or 'html'; base script only changes DOCTYPE and <body xml:lang>. 
     }
@@ -42,17 +44,17 @@ class Header {
 
     public function toXhtml() {
         $this->params['output'] = 'xhtml'; 
-        return stubOutput(); 
+        return $this->stubOutput(); 
     }
     
     public function toHtml5() {
         $this->params['output'] = 'html5'; 
-        return stubOutput(); 
+        return $this->stubOutput(); 
     }
     
     public function toHtml4() {
         $this->params['output'] = 'html'; 
-        return stubOutput(); 
+        return $this->html5Cleanup($this->stubOutput()); 
     }
     
     private function stubOutput() {
@@ -63,6 +65,7 @@ class Header {
             $meta_description = $this->params['meta_description']; 
             $meta_keywords = $this->params['meta_keywords']; 
             $rubrique = $this->params['section']; 
+            $titre_page = $this->params['title']; 
             
             if(isset($this->params['favicon'])) {
                 $gabarit_favicon = $this->params['favicon']; 
@@ -110,6 +113,11 @@ class Header {
         return ob_get_clean();
     }
     
+    private function html5Cleanup($string) {
+        $string = preg_replace('/<meta name="MSN_(.*)\/>/', '', $string); 
+        return $string; 
+    }
+    
     // Parameters. 
     
     public function setEncoding($e) {
@@ -118,49 +126,66 @@ class Header {
         }
         
         $this->params['encoding'] = $e; 
+        return $this; 
     }
     
     public function setFavicon($f) {
         $this->params['favicon'] = $f; 
+        return $this; 
     }
     
     public function setMetaDescription($d) {
         $this->params['meta_description'] = $d; 
+        return $this; 
     }
     
     public function setMetaKeywords($k) {
         $this->params['meta_keywords'] = $k; 
+        return $this; 
     }
     
     public function disableJquery() { // So you can use your own. 
         $this->params['jquery'] = false; 
+        return $this; 
     }
     
     public function setLatestJquery() { // Available! 
         $this->params['jquery_version'] = true; 
+        return $this; 
     }
     
     public function setJqueryVersion($v) {
         $this->params['jquery_version'] = $v; 
+        return $this; 
     }
     
     public function addHeadJs($j) {
         $this->params['js'][] = $js; 
+        return $this; 
     }
     
     public function setJs($c) { // Raw JS output
         $this->params['raw_js'] = $c; 
+        return $this; 
     }
     
     public function addHeadCss($c) {
         $this->params['css'][] = $cs; 
+        return $this; 
     }
     
     public function setSection($s) {    
         $this->params['section'] = (int) $s; 
+        return $this; 
     }
     
     public function setHead($h) { // Supplementary tags to add in <head>
         $this->params['head'] = $h; 
+        return $this; 
+    }
+    
+    public function setTitle($t) {
+        $this->params['title'] = $t; 
+        return $this; 
     }
 }
