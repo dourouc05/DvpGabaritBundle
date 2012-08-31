@@ -1,7 +1,7 @@
 <?php 
 
 namespace Dvp\GabaritBundle\Tests\Gabarit;
-use namespace Dvp\GabaritBundle\Gabarit\Header;
+use Dvp\GabaritBundle\Gabarit\Header;
 
 class HeaderTest extends \PHPUnit_Framework_TestCase {
     public function testHtml5() {
