@@ -38,3 +38,7 @@ To include just the body part of the template, use the Twig filters (with the se
         {{ 65|gab_up }}
         {# content #}
         {{ 65|gab_down }}
+
+To include the license text, use this Twig filter (with the license number): 
+::
+        {{ 1|gab_license }}
