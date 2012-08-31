@@ -6,13 +6,9 @@
     "license": "none",
     "authors": [
         {
-            "name": "Thomas Rabaix",
-            "email": "thomas.rabaix@sonata-project.org",
-            "homepage": "http://sonata-project.org"
-        },
-        {
-            "name": "Sonata Community",
-            "homepage": "https://github.com/sonata-project/SonataNewsBundle/contributors"
+            "name": "Thibaut Cuvelier",
+            "email": "tcuvelier@redaction-developpez.com",
+            "homepage": "http://tcuvelier.developpez.com"
         }
     ],
     "require": {
