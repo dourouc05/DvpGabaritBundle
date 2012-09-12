@@ -80,6 +80,8 @@ echo $Annee;
     }
     
     public function gabUpToHtml5($what) {
-        $what = str_replace('<input type="image" name="sa" id="recherche_submit" value="Go" title="Rechercher" src="/template/images/go-gray.png"/>', '<input type="image" name="sa" id="recherche_submit" title="Rechercher" src="/template/images/go-gray.png"/>', $what);
+        $what = str_replace('<input type="image" name="sa" id="recherche_submit" value="Go" title="Rechercher" src="/template/images/go-gray.png"/>', '<input type="image" name="sa" id="recherche_submit" title="Rechercher" alt="Rechercher" src="/template/images/go-gray.png"/>', $what);
+        
+        return $what;
     }
 }
