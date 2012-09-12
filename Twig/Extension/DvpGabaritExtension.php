@@ -68,7 +68,13 @@ echo $Annee;
 ?>', date('Y'), file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/template/licence3.php')));
     }
     
-    public function gabRightColumn($what) {
-        return utf8_encode(file_get_contents($what));
+    public function gabRightColumn($what, $utf8 = true) {
+        $data = file_get_contents($what); 
+    
+        if($utf8) {
+            $data = utf8_encode($data); 
+        }
+    
+        return $data;
     }
 }
