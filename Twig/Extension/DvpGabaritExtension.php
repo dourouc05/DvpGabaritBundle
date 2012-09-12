@@ -35,6 +35,7 @@ class DvpGabaritExtension extends \Twig_Extension
             'gab_down'         => new \Twig_Filter_Method($this, 'gabDown',        array('is_safe' => array('html'))),
             'gab_license'      => new \Twig_Filter_Method($this, 'gabLicense',     array('is_safe' => array('html'))),
             'gab_right_column' => new \Twig_Filter_Method($this, 'gabRightColumn', array('is_safe' => array('html'))),
+            'gab_up_toHtml5'   => new \Twig_Filter_Method($this, 'gabUpToHtml5',   array('is_safe' => array('html'))),
         );
     }
     
@@ -76,5 +77,9 @@ echo $Annee;
         }
     
         return $data;
+    }
+    
+    public function gabUpToHtml5($what) {
+        $what = str_replace('<input type="image" name="sa" id="recherche_submit" value="Go" title="Rechercher" src="/template/images/go-gray.png"/>', '<input type="image" name="sa" id="recherche_submit" title="Rechercher" src="/template/images/go-gray.png"/>', $what);
     }
 }
