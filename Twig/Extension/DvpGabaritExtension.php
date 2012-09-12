@@ -82,6 +82,9 @@ echo $Annee;
     public function gabUpToHtml5($what) {
         $what = str_replace('<input type="image" name="sa" id="recherche_submit" value="Go" title="Rechercher" src="/template/images/go-gray.png"/>', '<input type="image" name="sa" id="recherche_submit" title="Rechercher" alt="Rechercher" src="/template/images/go-gray.png"/>', $what);
         
+        $what = preg_replace('/<table cellspacing="0" cellpadding="(.*)" border="0"/', '<table style="border-spacing: 0; border-collapse: collapse; padding: $1; border-width: $3"', $what);
+        $what = preg_replace('/<table cellspacing="(.*)" cellpadding="(.*)" border="(.*)"/', '<table style="border-spacing: $1; padding: $2; border-width: $3;"', $what);
+        
         return $what;
     }
 }
